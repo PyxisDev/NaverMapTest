@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.windsekirun.navermaptest.NMap xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:id="@+id/mainLayout">
+    <com.nhn.android.maps.NMapView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/mapView"/>
+
+    <LinearLayout
+        android:id="@+id/baseSearch"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="4dp" >
+
+        <TextView
+            android:id="@+id/btnMyPlace"
+            android:layout_width="79.5dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="2dp"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="9dp"
+            android:text="재설정"
+            android:textColor="#ffff"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="41dp"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/edtSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="상호명으로 상점 검색"
+                android:imeOptions="actionSearch"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColor="#434343"
+                android:textColorHint="#434343"
+                android:textSize="15sp" />
+
+            <ImageButton
+                android:id="@+id/btnSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btnExpand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/icon"
+        android:layout_marginRight="10dp"
+        android:background="@null"/>
+</com.github.windsekirun.navermaptest.NMap>
