@@ -26,7 +26,6 @@
             android:drawablePadding="4dp"
             android:gravity="center_vertical"
             android:paddingLeft="9dp"
-            android:text="재설정"
             android:textColor="#ffff"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -40,7 +39,6 @@
                 android:id="@+id/edtSearch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="상호명으로 상점 검색"
                 android:imeOptions="actionSearch"
                 android:paddingLeft="15dp"
                 android:singleLine="true"

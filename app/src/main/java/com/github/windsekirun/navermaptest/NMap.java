@@ -31,10 +31,6 @@ import com.nhn.android.mapviewer.overlay.NMapMyLocationOverlay;
 import com.nhn.android.mapviewer.overlay.NMapOverlayManager;
 import com.nhn.android.mapviewer.overlay.NMapPOIdataOverlay;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -133,19 +129,6 @@ public class NMap extends RelativeLayout implements NMapView.OnMapStateChangeLis
         mMyLocationOverlay = mMapOverlayManager.createMyLocationOverlay(mMapLocationManager, mMapCompassManager);
 
         mMapController.setMapCenter(new NGeoPoint(DEFAULT_LONGITUDE, DEFAULT_LATITUDE), 11);
-
-        // TEST DATA MARKER DATA!! ----- START ------
-        try {
-            JSONObject jsonObject = MapVirtualData.getJSONArray();
-            JSONArray array = jsonObject.getJSONArray("entity");
-            for (int i = array.length() - 1; i >= 0; i--) {
-                JSONObject json = array.getJSONObject(i);
-                addMarker(new NMapMarker(json.getDouble("latitude"), json.getDouble("longitude"), json.getString("name")));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        // TEST DATA MARKER DATA!! ----- END ------
     }
 
     private void searchMap() {
@@ -166,40 +149,6 @@ public class NMap extends RelativeLayout implements NMapView.OnMapStateChangeLis
     }
 
     private void listener() {
-        /*
-        mBtnMyPlace.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertMyLocation location = new AlertMyLocation();
-                location.setOnCloseListener(new OnCloseListener() {
-                    @Override
-                    public void onClose(DialogInterface dialog, int which, Object data) {
-                        dialog.dismiss();
-
-                        if(which == Alert.BUTTON1) {
-                            clearAllMarker();
-
-                            JSONObject locationObj = _app.getCurrentLocation();
-
-                            double lat = Json.Obj.getDouble(locationObj, Constants.KEY_LATITUDE);
-                            double lng = Json.Obj.getDouble(locationObj, Constants.KEY_LONGITUDE);
-
-                            NGeoPoint location = new NGeoPoint(lng, lat);
-
-                            // mMapController.animateTo(location);
-                            mMapController.setMapCenter(location);
-
-                            if(mMapReloadListener != null)
-                                mMapReloadListener.onReload(2, location);
-                        }
-                    }
-                });
-
-                location.show(getContext());
-            }
-        });
-        */
-
         mBtnExpand.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,31 +194,6 @@ public class NMap extends RelativeLayout implements NMapView.OnMapStateChangeLis
             addMarker(marker);
         }
     }
-
-    /*
-    public void addMarkers(boolean clear, JSONArray array) {
-        ArrayList<NMapMarker> markers = new ArrayList<NMap.NMapMarker>();
-        if (clear)
-            clearAllMarker();
-
-        for (int i = 0; i < array.length(); i++) {
-            JSONObject json = Json.Arr.getJSONObject(array, i);
-            NMapMarker marker = new NMapMarker(
-                    Json.Obj.getDouble(json, Constants.KEY_LONGITUDE, 0.0),
-                    Json.Obj.getDouble(json, Constants.KEY_LATITUDE, 0.0),
-                    Json.Obj.getString(json,  "name"));
-            marker.setSnippet(json.toString()).setId(i);
-
-            boolean isPromotion = Constants.SHOP_PROMOTION.equalsIgnoreCase(Json.Obj.getString(json, "promotion"));
-            marker.setMarker(ContextCompat.getDrawable(getContext(), isPromotion ? MARKER_RED : MARKER_GRAY));
-
-            markers.add(marker);
-        }
-
-        if (markers != null && !markers.isEmpty())
-            addMarkers(markers);
-    }
-    */
 
     public void clearAllMarker() {
         if (mMapPOIdataOverlay != null)
